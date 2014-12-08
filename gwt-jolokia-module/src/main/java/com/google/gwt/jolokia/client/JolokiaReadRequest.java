@@ -21,4 +21,9 @@ public class JolokiaReadRequest extends JolokiaRequest {
 	public void setPath(String path) {
 		this.path = path;
 	}
+
+	public void addAttribute(String key, String value) {
+		// TODO Auto-generated method stub
+		
+	}
 }

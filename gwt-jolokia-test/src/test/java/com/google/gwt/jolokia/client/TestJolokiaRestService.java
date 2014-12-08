@@ -18,7 +18,6 @@ public class TestJolokiaRestService extends GWTTestCase {
 	public String getModuleName() {
 		return "com.google.gwt.jolokia.JolokiaTest";
 	}
-
 	
 	@Test
 	public void testGetMemory() {
@@ -32,7 +31,6 @@ public class TestJolokiaRestService extends GWTTestCase {
 			public void onSuccess(JolokiaMemoryResponse response) {
 				assertTrue(response.getNonHeapMemoryUsage() != null);
 				assertTrue(response.getNonHeapMemoryUsage().getUsed() > 0);
-				System.out.println("Non heap usage " + response.getNonHeapMemoryUsage().getUsed());
 			}
 			
 			public void onFailure(Throwable exception) {
