@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.google.gwt.jolokia</groupId>
+	<artifactId>gwt-jolokia</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>gwt-jolokia-project</name>
+	<description>Parent for the jolokia gwt project</description>
+	<packaging>pom</packaging>
+
+
+
+	<modules>
+		<module>gwt-jolokia-module</module>
+		<module>gwt-jolokia-test</module>
+	</modules>
+
+	<build>
+		<plugins>
+			<!-- Needed to compile the request factory stubs -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
