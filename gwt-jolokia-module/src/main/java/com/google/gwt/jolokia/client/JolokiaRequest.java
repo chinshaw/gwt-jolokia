@@ -1,27 +1,33 @@
 package com.google.gwt.jolokia.client;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.google.gwt.core.client.JavaScriptObject;
 
-@JsonIgnoreProperties
-public class JolokiaRequest {
-	
-	private String mbean;
-	
-	private String attribute;
-	
-	public String getMbean() {
-		return mbean;
+public class JolokiaRequest extends JavaScriptObject {
+
+	protected JolokiaRequest() {
 	}
+	
+	protected final native void setType(String type) /*-{
+		this.type = type;
+	}-*/;
+	
+	public final native void getType() /*-{
+		return this.type;
+	}-*/;
+	
+	public final native String getMbean() /*-{
+		return this.mbean;
+	}-*/;
 
-	public void setMbean(String mbean) {
+	public final native void setMbean(String mbean) /*-{
 		this.mbean = mbean;
-	}
+	}-*/;
 
-	public String getAttribute() {
-		return attribute;
-	}
+	public final native String getAttribute() /*-{
+		return this.attribute;
+	}-*/;
 
-	public void setAttribute(String attribute) {
+	public final native void setAttribute(String attribute) /*-{
 		this.attribute = attribute;
-	}
+	}-*/;
 }

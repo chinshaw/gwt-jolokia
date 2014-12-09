@@ -1,16 +1,23 @@
 package com.google.gwt.jolokia.client;
 
+import com.google.gwt.core.client.JavaScriptObject;
+
 
 public class JolokiaReadResponse extends JolokiaResponse {
 	
-	private JolokiaReadRequest readRequest;
+	protected JolokiaReadResponse() {
+		
+	}
 	
-	public JolokiaReadRequest getReadRequest() {
-		return readRequest;
-	}
-
-	public void setReadRequest(JolokiaReadRequest readRequest) {
-		this.readRequest = readRequest;
-	}
-
+	public final native JavaScriptObject getValue() /*-{
+		return this.value;
+	}-*/;
+	
+	public final native <T extends JavaScriptObject> T getValuePropertyObj(String key) /*-{
+		return this.value[key];
+	}-*/;
+	
+	public final native int getValuePropertyInt(String key) /*-{
+		return this.value[key];
+	}-*/;
 }

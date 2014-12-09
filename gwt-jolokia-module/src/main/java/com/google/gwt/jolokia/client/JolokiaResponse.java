@@ -1,71 +1,63 @@
 package com.google.gwt.jolokia.client;
 
-import java.util.Date;
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.UnsafeNativeLong;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+public class JolokiaResponse extends JavaScriptObject {
 
-@JsonIgnoreProperties
-public class JolokiaResponse {
-
-	private long timestamp;
-
-	private int status;
-
-	@JsonProperty("error_type")
-	private String errorType;
-
-	private String error;
-
-	private String stacktrace;
-
-	private JolokiaRequest request;
-
-	public long getTimestamp() {
-		return timestamp;
+	protected JolokiaResponse() {
+		
 	}
-
-	public void setTimestamp(long timestamp) {
+	
+	@UnsafeNativeLong
+	public final native long getTimestamp() /*-{
+		return this.timestamp;
+	}-*/;
+	
+	@UnsafeNativeLong
+	public final native void setTimestamp(long timestamp) /*-{
 		this.timestamp = timestamp;
-	}
+	}-*/;
 
-	public int getStatus() {
-		return status;
-	}
+	public final native int getStatus() /*-{
+		return this.status;
+	}-*/;
 
-	public void setStatus(int status) {
+	public final native void setStatus(int status) /*-{
 		this.status = status;
-	}
+	}-*/;
 
-	public JolokiaRequest getRequest() {
-		return request;
-	}
+	public final native JolokiaRequest getRequest() /*-{
+		return this.request;
+	}-*/;
 
-	public void setRequest(JolokiaRequest request) {
+	public final native void setRequest(JolokiaRequest request) /*-{
 		this.request = request;
-	}
+	}-*/;
 
-	public String getErrorType() {
-		return errorType;
-	}
+	
+	public final native String getErrorType() /*-{
+		return this.errorType;
+	}-*/;
 
-	public void setErrorType(String errorType) {
+	public final native void setErrorType(String errorType) /*-{
 		this.errorType = errorType;
-	}
+	}-*/;
 
-	public String getError() {
-		return error;
-	}
+	public final native String getError() /*-{
+		return this.error;
+	}-*/;
 
-	public void setError(String error) {
+	public final native void setError(String error) /*-{
 		this.error = error;
-	}
+	}-*/;
 
-	public String getStacktrace() {
-		return stacktrace;
-	}
+	public final native String getStacktrace() /*-{
+		return this.stacktrace;
+	}-*/;
 
-	public void setStacktrace(String stacktrace) {
+	public final native void setStacktrace(String stacktrace) /*-{
 		this.stacktrace = stacktrace;
-	}
+	}-*/;
+	
 }
