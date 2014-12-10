@@ -26,7 +26,15 @@ public class JolokiaReadResponse extends JolokiaResponse {
 		return this.value[key];
 	}-*/;
 	
+	public final native double getValuePropertyDouble(String key) /*-{
+		return this.value[key];
+	}-*/;
+	
 	public final native String getValuePropertyString(String key) /*-{
+		return this.value[key];
+	}-*/;
+	
+	public final native Boolean getValuePropertyBool(String key) /*-{
 		return this.value[key];
 	}-*/;
 	
