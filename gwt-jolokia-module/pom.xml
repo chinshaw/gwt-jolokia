@@ -50,13 +50,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.googlecode.gwt-crypto</groupId>
-			<artifactId>gwt-crypto</artifactId>
-			<version>2.3.0</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.3.6</version>
@@ -72,7 +65,6 @@
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-dev</artifactId>
-			<scope>test</scope>
 			<version>2.6.1</version>
 		</dependency>
 

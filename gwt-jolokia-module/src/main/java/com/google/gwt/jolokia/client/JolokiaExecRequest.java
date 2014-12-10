@@ -1,7 +1,7 @@
 package com.google.gwt.jolokia.client;
 
-import com.google.gwt.core.client.JavaScriptObject;
 
-public class JolokiaExecRequest extends JavaScriptObject {
+public class JolokiaExecRequest extends JolokiaRequest {
 
+	protected JolokiaExecRequest() {}
 }

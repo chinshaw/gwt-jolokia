@@ -18,7 +18,7 @@ public class TestJolokiaRestService extends GWTTestCase {
 	
 	@Test
 	public void testGetMemory() throws RequestException {
-		final JolokiaClient client = new JolokiaClient("/com.google.gwt.jolokia.JolokiaTest.JUnit/api/jolokia"); 
+		final JolokiaClient client = new JolokiaClient("/com.google.gwt.jolokia.JolokiaTest.JUnit/api/jolokia", "admin", "admin"); 
 
 		client.getAttribute("java.lang:type=Memory", "HeapMemoryUsage", null, null, new AsyncCallback<JolokiaReadResponse>() {
 
@@ -29,11 +29,9 @@ public class TestJolokiaRestService extends GWTTestCase {
 
 			@Override
 			public void onSuccess(JolokiaReadResponse result) {
-				System.out.println("Result is " + result.getStatus());
-				System.out.println("Result is " + result.getError());
-				
+				assertTrue(result.getStatus() == 200);
 				System.out.println("Value is " +  new JSONObject(result.getValue()).toString());
-				Integer memoryMax = result.getValueProertyInt("max");
+				Integer memoryMax = result.getValuePropertyInt("max");
 				System.out.println("Max memory is " + memoryMax);
 			}
 		});

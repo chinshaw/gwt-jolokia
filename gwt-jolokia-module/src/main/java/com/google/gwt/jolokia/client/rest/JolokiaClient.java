@@ -24,12 +24,16 @@ public class JolokiaClient {
 	public JolokiaClient(final String url) {
 		builder = new RequestBuilder(RequestBuilder.POST, url);
 	}
+	
+	public JolokiaClient(final String url, final String username, final String password) {
+		builder = new RequestBuilder(RequestBuilder.POST, url);
+		builder.setUser(username);
+		builder.setPassword(password);
+	}
 
 	public void getAttribute(String mbean, String attribute, String path, String[] opts,
 			final AsyncCallback<JolokiaReadResponse> callback) throws RequestException {
 		
-		builder.setUser("admin");
-		builder.setPassword("admin");
 		JolokiaReadRequest readRequest = JolokiaReadRequest.create();
 		readRequest.setMbean(mbean);
 		if (path != null) {
