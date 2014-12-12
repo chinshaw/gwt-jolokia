@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.google.gwt.jolokia</groupId>
-		<artifactId>gwt-jolokia</artifactId>
+		<artifactId>gwt-jolokia-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>gwt-jolokia-module</artifactId>
-	<name>gwt-jolokia-module</name>
+	<name>gwt-jolokia</name>
 	<packaging>jar</packaging>
 	<description>Jolokia rest implementation for gwt</description>
 

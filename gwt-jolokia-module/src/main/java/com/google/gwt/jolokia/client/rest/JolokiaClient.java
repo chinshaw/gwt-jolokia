@@ -19,16 +19,17 @@ public class JolokiaClient {
 
 	private static final Logger logger = Logger.getLogger(JolokiaClient.class.getName());
 	
-	private final RequestBuilder builder;
+	private final RequestBuilder requestBuilder;
 	
 	public JolokiaClient(final String url) {
-		builder = new RequestBuilder(RequestBuilder.POST, url);
+		requestBuilder = new RequestBuilder(RequestBuilder.POST, url);
 	}
 	
 	public JolokiaClient(final String url, final String username, final String password) {
-		builder = new RequestBuilder(RequestBuilder.POST, url);
-		builder.setUser(username);
-		builder.setPassword(password);
+		this(url);
+		requestBuilder.setUser(username);
+		requestBuilder.setPassword(password);
+		requestBuilder.setHeader("Authorization", createBasicAuthToken(username, password));
 	}
 
 	public void getAttribute(String mbean, String attribute, String path, String[] opts,
@@ -60,7 +61,7 @@ public class JolokiaClient {
 		final String jsonRequest = new JSONObject(request).toString();
 		logger.info("request json  "+ " \n " + jsonRequest);
 		
-		builder.sendRequest(jsonRequest, new RequestCallback() {
+		requestBuilder.sendRequest(jsonRequest, new RequestCallback() {
 			
 			@Override
 			public void onResponseReceived(Request request, Response response) {
@@ -76,5 +77,18 @@ public class JolokiaClient {
 			}
 		});
 	}
-
+	
+	protected String createBasicAuthToken(final String username, final String password) {
+	    byte[] bytes = stringToBytes(username + ":" + password);
+	    String token = Base64Utils.toBase64(bytes);
+	    return "Basic " + token;
+	}
+	
+	protected byte[] stringToBytes(String msg) {
+	    int len = msg.length();
+	    byte[] bytes = new byte[len];
+	    for (int i = 0; i < len; i++)
+	        bytes[i] = (byte) (msg.charAt(i) & 0xff);
+	    return bytes;
+	}
 }
