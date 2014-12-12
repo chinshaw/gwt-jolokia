@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.google.gwt.jolokia</groupId>
-		<artifactId>gwt-jolokia-parent</artifactId>
+		<artifactId>gwt-jolokia</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>gwt-jolokia-jconsole</artifactId>
@@ -14,7 +14,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>gwt-jolokia-module</artifactId>
+			<artifactId>gwt-jolokia-client</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 

@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.google.gwt.jolokia</groupId>
-	<artifactId>gwt-jolokia-parent</artifactId>
+	<artifactId>gwt-jolokia</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>gwt-jolokia-project</name>
 	<description>Parent for the jolokia gwt project</description>
@@ -10,7 +10,7 @@
 
 
 	<modules>
-		<module>gwt-jolokia-module</module>
+		<module>gwt-jolokia-client</module>
 		<module>gwt-jolokia-test</module>
 		<module>gwt-jolokia-jconsole</module>
 	</modules>

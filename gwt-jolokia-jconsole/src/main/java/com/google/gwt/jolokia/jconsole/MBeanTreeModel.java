@@ -19,7 +19,6 @@ public class MBeanTreeModel implements TreeViewModel {
 		}
 		
 		return null;
-		
 	}
 
 	@Override

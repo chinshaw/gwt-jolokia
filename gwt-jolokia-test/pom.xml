@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.google.gwt.jolokia</groupId>
-		<artifactId>gwt-jolokia-parent</artifactId>
+		<artifactId>gwt-jolokia</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>gwt-jolokia-test</artifactId>
@@ -33,10 +33,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.google.gwt.jolokia</groupId>
-			<artifactId>gwt-jolokia-module</artifactId>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>gwt-jolokia-client</artifactId>
 			<version>${project.version}</version>
-			<scope>test</scope>
 		</dependency>
 
 		<dependency>
