@@ -8,6 +8,9 @@
 	<description>Parent for the jolokia gwt project</description>
 	<packaging>pom</packaging>
 
+	<properties>
+		<gwt.version>2.7.0</gwt.version>
+	</properties>
 
 	<modules>
 		<module>gwt-jolokia-client</module>

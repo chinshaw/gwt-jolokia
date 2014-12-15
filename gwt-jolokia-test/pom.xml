@@ -29,7 +29,7 @@
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
 			<scope>provided</scope>
-			<version>2.6.1</version>
+			<version>${gwt.version}</version>
 		</dependency>
 
 		<dependency>
@@ -42,10 +42,8 @@
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-dev</artifactId>
 			<scope>test</scope>
-			<version>2.6.1</version>
+			<version>${gwt.version}</version>
 		</dependency>
-
-
 
 		<dependency>
 			<groupId>junit</groupId>

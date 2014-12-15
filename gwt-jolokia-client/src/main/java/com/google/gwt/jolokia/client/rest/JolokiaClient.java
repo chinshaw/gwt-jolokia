@@ -8,6 +8,8 @@ import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
+import com.google.gwt.jolokia.client.JolokiaListRequest;
+import com.google.gwt.jolokia.client.JolokiaListResponse;
 import com.google.gwt.jolokia.client.JolokiaReadRequest;
 import com.google.gwt.jolokia.client.JolokiaReadResponse;
 import com.google.gwt.jolokia.client.JolokiaRequest;
@@ -53,6 +55,27 @@ public class JolokiaClient {
 			@Override
 			public void onSuccess(JolokiaResponse result) {
 				callback.onSuccess((JolokiaReadResponse)result.cast());
+			}
+		});
+	}
+	
+	
+	public void listMbeans(final AsyncCallback<JolokiaListResponse> callback) throws RequestException {
+		list(JolokiaListRequest.create(), callback);
+	}
+	
+	public void list(final JolokiaRequest request, final AsyncCallback<JolokiaListResponse> callback) throws RequestException {
+		
+		send(request, new AsyncCallback<JolokiaResponse>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				callback.onFailure(caught);
+			}
+
+			@Override
+			public void onSuccess(JolokiaResponse result) {
+				callback.onSuccess((JolokiaListResponse)result.cast());
 			}
 		});
 	}
