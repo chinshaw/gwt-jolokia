@@ -19,6 +19,4 @@
 	<source path='client' />
 
 	<entry-point class='com.google.gwt.jolokia.jconsole.client.JConsole' />
-
-	<servlet path="/api/jolokia/*" class="com.google.gwt.jolokia.server.servlet.ProxyServlet" />
 </module>

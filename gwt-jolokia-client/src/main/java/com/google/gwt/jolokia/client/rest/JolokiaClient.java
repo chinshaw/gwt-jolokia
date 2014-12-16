@@ -10,10 +10,13 @@ import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.jolokia.client.JolokiaListRequest;
 import com.google.gwt.jolokia.client.JolokiaListResponse;
+import com.google.gwt.jolokia.client.JolokiaMultiRequest;
+import com.google.gwt.jolokia.client.JolokiaMultiResponse;
 import com.google.gwt.jolokia.client.JolokiaReadRequest;
 import com.google.gwt.jolokia.client.JolokiaReadResponse;
 import com.google.gwt.jolokia.client.JolokiaRequest;
 import com.google.gwt.jolokia.client.JolokiaResponse;
+import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -59,6 +62,8 @@ public class JolokiaClient {
 		});
 	}
 	
+
+	
 	
 	public void listMbeans(final AsyncCallback<JolokiaListResponse> callback) throws RequestException {
 		list(JolokiaListRequest.create(), callback);
@@ -76,6 +81,26 @@ public class JolokiaClient {
 			@Override
 			public void onSuccess(JolokiaResponse result) {
 				callback.onSuccess((JolokiaListResponse)result.cast());
+			}
+		});
+	}
+	
+	public void send(JolokiaMultiRequest request, final AsyncCallback<JolokiaMultiResponse> callback) throws RequestException {
+		final String jsonRequest = new JSONArray(request).toString();
+		logger.info("Multi request payload " + jsonRequest);
+		requestBuilder.sendRequest(jsonRequest, new RequestCallback() {
+			
+			@Override
+			public void onResponseReceived(Request request, Response response) {
+				if (response.getStatusCode() == 200) {
+					JolokiaMultiResponse jolokiaResponse = JsonUtils.safeEval(response.getText());
+					callback.onSuccess(jolokiaResponse);
+				}
+			}
+			
+			@Override
+			public void onError(Request request, Throwable exception) {
+				callback.onFailure(exception);
 			}
 		});
 	}

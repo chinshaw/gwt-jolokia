@@ -25,5 +25,4 @@ public class JolokiaConsole extends Composite {
 		logger.info("INitializing view");
 		initWidget(GWT.<Binder> create(Binder.class).createAndBindUi(this));
 	}
-
 }

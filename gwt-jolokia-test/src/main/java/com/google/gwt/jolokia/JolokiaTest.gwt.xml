@@ -3,30 +3,20 @@
 <module rename-to='jolokia'>
 
 	<inherits name='com.google.gwt.jolokia.Jolokia' />
-	<inherits name="com.google.gwt.http.HTTP" />
-	<inherits name="com.google.gwt.logging.Logging" />
+	
 	<inherits name="com.google.gwt.user.User" />
-	<inherits name="com.googlecode.gwt.crypto.Crypto" />
+	<inherits name="com.google.gwt.place.Place" />
+	<inherits name="com.google.gwt.activity.Activity" />
+	<inherits name="com.google.gwt.logging.Logging" />
 
-
-
-	<set-property name="gwt.logging.logLevel" value="FINEST" />
-	<set-property name="gwt.logging.popupHandler" value="DISABLED" />
-	<!-- <set-property name="gwt.logging.simpleRemoteHandler" value="ENABLED" 
-		/> -->
+	<set-property name="gwt.logging.logLevel" value="FINE" />
+	<set-property name="gwt.logging.enabled" value="TRUE" />
+	
 	<set-property name="compiler.stackMode" value="emulated" />
-	<set-configuration-property name="compiler.emulatedStack.recordLineNumbers"
-		value="true" />
-	<set-configuration-property name="compiler.emulatedStack.recordFileNames"
-		value="true" />
-	<set-configuration-property name="devModeRedirectEnabled"
-		value="true" />
+	<set-configuration-property name="compiler.emulatedStack.recordFileNames" value="true" />
+	<set-configuration-property name="compiler.emulatedStack.recordLineNumbers" value="true" />
 
 	<source path='client' />
-	<source path='shared' />
-
-	<!-- Super dev mode configurations -->
-	<add-linker name="xsiframe" />
 
 	<servlet path="/api/jolokia/*" class="com.google.gwt.jolokia.server.servlet.ProxyServlet" />
 </module>

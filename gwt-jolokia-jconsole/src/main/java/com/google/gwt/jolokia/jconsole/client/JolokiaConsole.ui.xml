@@ -3,10 +3,17 @@
 	xmlns:c="urn:import:com.google.gwt.user.cellview.client" xmlns:g="urn:import:com.google.gwt.user.client.ui">
 
 	<ui:style>
-	</ui:style>
+		.container {
+			overflow-y:auto !important;
+
+		}
 	
-	<g:HTMLPanel>
-		<c:CellTree ui:field="mbeans" />
+	</ui:style>
+
+	<g:HTMLPanel addStyleNames="{style.container}">
+		<g:ScrollPanel>
+			<c:CellTree ui:field="mbeans" />
+		</g:ScrollPanel>
 	</g:HTMLPanel>
 
 </ui:UiBinder>

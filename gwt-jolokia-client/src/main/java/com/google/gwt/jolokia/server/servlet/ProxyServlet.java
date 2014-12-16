@@ -77,9 +77,6 @@ import org.apache.http.util.EntityUtils;
  *
  * @author David Smiley dsmiley@mitre.org
  */
-@WebServlet(asyncSupported = true, loadOnStartup = 1, initParams = {
-		@WebInitParam(name = "targetUri", value = "http://localhost:8161/api/jolokia/"),
-		@WebInitParam(name = "log", value = "true") }, urlPatterns = "/api/jolokia")
 public class ProxyServlet extends HttpServlet {
 
 	/* INIT PARAMETER NAME CONSTANTS */
@@ -102,7 +99,7 @@ public class ProxyServlet extends HttpServlet {
 
 	/* MISC */
 
-	protected boolean doLog = true;
+	protected boolean doLog = false;
 	protected boolean doForwardIP = true;
 	/** User agents shouldn't send the url fragment but what if it does? */
 	protected boolean doSendUrlFragment = true;
@@ -169,10 +166,7 @@ public class ProxyServlet extends HttpServlet {
 
 		if (targetUri == null) {
 			Properties props = loadProperties();
-			System.out.println("PRoperties are " + props);
 			if (props != null) {
-				System.out.println("PRoperties are " + props);
-					
 				targetUri = props.getProperty("targetUri");
 			}
 		}

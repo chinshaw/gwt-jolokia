@@ -56,12 +56,9 @@ public class MBeanTreeModel implements TreeViewModel {
 
 	@Override
 	public <T> NodeInfo<?> getNodeInfo(T value) {
-		logger.info("GETTING VALUE");
 		if (value == null) {
 			logger.info("Value is null");
 		}
-
-		logger.info("Value is " + value);
 
 		JSOWrapper wrapper = null;
 

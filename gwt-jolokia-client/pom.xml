@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.google.gwt.jolokia</groupId>
 		<artifactId>gwt-jolokia</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1</version>
 	</parent>
 
 	<artifactId>gwt-jolokia-client</artifactId>

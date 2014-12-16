@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.google.gwt.jolokia</groupId>
 	<artifactId>gwt-jolokia</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>gwt-jolokia-project</name>
 	<description>Parent for the jolokia gwt project</description>
 	<packaging>pom</packaging>
