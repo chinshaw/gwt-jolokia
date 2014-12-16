@@ -59,7 +59,7 @@ public class TestJolokiaRestService extends GWTTestCase {
 		multiRequest.push(heapRequest);
 		multiRequest.push(queueRequest);
 
-		client.send(multiRequest, new AsyncCallback<JolokiaMultiResponse>() {
+		client.sendMulti(multiRequest, new AsyncCallback<JolokiaMultiResponse>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
