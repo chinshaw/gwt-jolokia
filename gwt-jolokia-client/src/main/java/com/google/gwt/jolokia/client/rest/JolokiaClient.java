@@ -2,6 +2,8 @@ package com.google.gwt.jolokia.client.rest;
 
 import java.util.logging.Logger;
 
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.JsonUtils;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
@@ -166,11 +168,11 @@ public class JolokiaClient {
 		});
 	}
 
-	final void send(final JolokiaRequest request, final AsyncCallback<JolokiaResponse> callback) throws RequestException {
+	final Request send(final JolokiaRequest request, final AsyncCallback<JolokiaResponse> callback) throws RequestException {
 		final String jsonRequest = new JSONObject(request).toString();
 		logger.info("request json  "+ " \n " + jsonRequest);
 		
-		requestBuilder.sendRequest(jsonRequest, new RequestCallback() {
+		return requestBuilder.sendRequest(jsonRequest, new RequestCallback() {
 			
 			@Override
 			public void onResponseReceived(Request request, Response response) {
@@ -212,4 +214,24 @@ public class JolokiaClient {
 	        bytes[i] = (byte) (msg.charAt(i) & 0xff);
 	    return bytes;
 	}
+	
+	/*
+	public class JolokiaRequestBuilder<T extends JolokiaResponse> {
+		
+		private JsArray<JolokiaRequest> requests = JavaScriptObject.createArray().cast();
+		
+		private AsyncCallback<>
+		
+		
+		public JolokiaRequestBuilder withRequest(JolokiaRequest request) {
+			requests.push(request);
+			return this;
+		}
+		
+		public Request build() {
+			requestBuilder.setCallback(callback);
+			
+		}
+	}
+	*/
 }

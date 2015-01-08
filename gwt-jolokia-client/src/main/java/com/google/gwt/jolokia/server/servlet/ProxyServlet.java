@@ -29,6 +29,8 @@ import java.util.Formatter;
 import java.util.List;
 import java.util.Properties;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -92,11 +94,12 @@ public class ProxyServlet extends HttpServlet {
 
 	/** The parameter name for the target (destination) URI to proxy to. */
 	protected static final String P_TARGET_URI = "targetUri";
+	protected static final String P_TARGET_JNDI_PROPERTIES = "jndi.properties";
+	protected static final String P_TARGET_PROPERTIES_TARGET_URI_NAME = "properties.targetURIPropertyName";
 	protected static final String ATTR_TARGET_URI = ProxyServlet.class.getSimpleName() + ".targetUri";
 	protected static final String ATTR_TARGET_HOST = ProxyServlet.class.getSimpleName() + ".targetHost";
 
 	/* MISC */
-
 	protected boolean doLog = false;
 	protected boolean doForwardIP = true;
 	/** User agents shouldn't send the url fragment but what if it does? */
@@ -161,7 +164,24 @@ public class ProxyServlet extends HttpServlet {
 		if (targetUri == null) {
 			targetUri = getConfigParam(P_TARGET_URI);
 		}
-
+		
+		// Try to load target uri from the jndi properties if available.
+		final String jndiPropertiesParam = getConfigParam(P_TARGET_JNDI_PROPERTIES);
+		if (targetUri == null && jndiPropertiesParam != null)  {
+			log("Attempting to read jndi properties " + jndiPropertiesParam);
+			Properties props = loadJndiProperties(jndiPropertiesParam);
+			
+			final String jndiTargetParamName = getConfigParam(P_TARGET_PROPERTIES_TARGET_URI_NAME);
+			
+			if (jndiTargetParamName == null) {
+				log("You did not specify a parameter for " + P_TARGET_PROPERTIES_TARGET_URI_NAME + " targetUri will be looked for in the jndi properties");
+			}
+			
+			if (props != null) {
+				targetUri = props.getProperty(jndiTargetParamName, P_TARGET_URI);
+			}
+		}
+		
 		if (targetUri == null) {
 			Properties props = loadProperties();
 			if (props != null) {
@@ -171,6 +191,7 @@ public class ProxyServlet extends HttpServlet {
 
 		if (targetUri == null)
 			throw new ServletException(P_TARGET_URI + " is required.");
+		
 		// test it's valid
 		log("targetUri is " + targetUri);
 
@@ -299,7 +320,7 @@ public class ProxyServlet extends HttpServlet {
 		
 		setXForwardedForHeader(servletRequest, proxyRequest);
 		
-		debugProxyRequest(proxyRequest);
+		//debugProxyRequest(proxyRequest);
 
 		HttpResponse proxyResponse = null;
 		try {
@@ -709,6 +730,27 @@ public class ProxyServlet extends HttpServlet {
 		}
 
 		return properties;
+	}
+	
+	private Properties loadJndiProperties(String jndiResourceName) {
+		Properties props = null;
+		InitialContext ic;
+		try {
+			ic = new InitialContext();
+			Object o = ic.lookup(jndiResourceName);
+			
+			if (o != null) {
+	            if (o instanceof Properties) {
+	                props = (Properties) o;
+	            } else {
+	                System.err.println("shiftone resource is not java.util.Properites type!!");
+	            }
+	        }
+		} catch (NamingException e) {
+			log("Unable to process your jndi properties name. Your proxy will not work" + jndiResourceName, e);
+		}
+		return props;
+		
 	}
 	
 	private void debugProxyRequest(HttpRequest request) {

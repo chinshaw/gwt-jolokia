@@ -22,4 +22,16 @@ public class JolokiaReadRequest extends JolokiaRequest {
 		readRequest.setType("read");
 		return readRequest;
 	}
+	
+	public static final JolokiaReadRequest create(String mbean) {
+		JolokiaReadRequest readRequest = create();
+		readRequest.setMbean(mbean);
+		return readRequest;
+	}
+	
+	public static final JolokiaReadRequest create(String mbean, String attribute) {
+		JolokiaReadRequest readRequest = create(mbean);
+		readRequest.setAttribute(attribute);
+		return readRequest;
+	}
 }
